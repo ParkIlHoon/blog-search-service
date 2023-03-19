@@ -2,6 +2,11 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.4'
     id 'io.spring.dependency-management' version '1.1.0'
+
+    // test fixture
+    id "java-library"
+    id "java-test-fixtures"
+    id "maven-publish"
 }
 
 jar {
@@ -27,6 +32,11 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
+    // test fixture
+    apply plugin: "java-library"
+    apply plugin: "java-test-fixtures"
+    apply plugin: "maven-publish"
+
     configurations {
         compileOnly {
             extendsFrom annotationProcessor
@@ -38,6 +48,10 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        testFixturesImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testFixturesCompileOnly 'org.projectlombok:lombok'
+        testFixturesAnnotationProcessor 'org.projectlombok:lombok'
     }
 
     tasks.named('test') {
