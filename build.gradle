@@ -59,3 +59,10 @@ subprojects {
     }
 
 }
+
+project(':blog-search-api') {
+    dependencies {
+        implementation project(':keyword')
+        implementation project(':search')
+    }
+}
