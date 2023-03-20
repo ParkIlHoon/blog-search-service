@@ -9,8 +9,10 @@ import io.hoon.blogsearch.search.mapper.BlogSearchResponseMapper;
 import io.hoon.blogsearch.search.utils.NaverParamUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Objects;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -32,6 +34,9 @@ public class NaverBlogSearchClient implements BlogSearchClient {
 
     @Override
     public Mono<BlogSearchResponse> search(String keyword, BlogSearchPaging paging) throws IllegalArgumentException {
+        if (!StringUtils.hasText(keyword)) throw new IllegalArgumentException("검색어는 필수 값입니다.");
+        if (Objects.isNull(paging)) throw new IllegalArgumentException("페이징은 필수 값입니다.");
+
         int display = constraintDisplay(paging.getPageSize());
         int start = NaverParamUtils.calculateStart(paging.getPage(), display);
         BlogSearchPaging constrainedPaging = BlogSearchPaging.of(constraintStart(start), display, paging.getSort());

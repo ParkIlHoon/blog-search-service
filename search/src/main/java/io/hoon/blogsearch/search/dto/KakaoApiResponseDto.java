@@ -16,6 +16,12 @@ public class KakaoApiResponseDto {
 
     private final List<Document> documents;
 
+    // JSON 직렬화/역직렬화를 위한 생성자
+    private KakaoApiResponseDto() {
+        this.meta = null;
+        this.documents = null;
+    }
+
     @Getter
     @RequiredArgsConstructor
     public static class Meta {
@@ -35,6 +41,13 @@ public class KakaoApiResponseDto {
          * 값이 false면 page를 증가시켜 다음 페이지를 요청할 수 있음
          */
         private final boolean end;
+
+        // JSON 직렬화/역직렬화를 위한 생성자
+        private Meta() {
+            this.totalCount = -1;
+            this.pageableCount = -1;
+            this.end = false;
+        }
     }
 
     @Getter
@@ -71,6 +84,16 @@ public class KakaoApiResponseDto {
          * ISO 8601
          */
         private final ZonedDateTime datetime;
+
+        // JSON 직렬화/역직렬화를 위한 생성자
+        private Document() {
+            this.title = null;
+            this.contents = null;
+            this.url = null;
+            this.blogname = null;
+            this.thumbnail = null;
+            this.datetime = null;
+        }
     }
 
 }

@@ -8,8 +8,10 @@ import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse;
 import io.hoon.blogsearch.search.mapper.BlogSearchResponseMapper;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Objects;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -30,17 +32,20 @@ public class KakaoBlogSearchClient implements BlogSearchClient {
 
     @Override
     public Mono<BlogSearchResponse> search(String keyword, BlogSearchPaging paging) throws IllegalArgumentException {
+        if (!StringUtils.hasText(keyword)) throw new IllegalArgumentException("검색어는 필수 값입니다.");
+        if (Objects.isNull(paging)) throw new IllegalArgumentException("페이징은 필수 값입니다.");
+
         BlogSearchPaging constrainedPaging = BlogSearchPaging.of(constraintPage(paging.getPage()), constraintPageSize(paging.getPageSize()), paging.getSort());
         return this.webClient.get()
             .uri(builder -> builder
                 .queryParam(KakaoApiConstants.PARAM_QUERY, constraintKeyword(keyword))
-                .queryParam(KakaoApiConstants.PARAM_SORT, constrainedPaging.getSort().getNaver())
+                .queryParam(KakaoApiConstants.PARAM_SORT, constrainedPaging.getSort().getKakao())
                 .queryParam(KakaoApiConstants.PARAM_PAGE, constrainedPaging.getPage())
                 .queryParam(KakaoApiConstants.PARAM_SIZE, constrainedPaging.getPageSize())
                 .build())
             .retrieve()
             .bodyToMono(KakaoApiResponseDto.class)
-            .map(k -> BlogSearchResponseMapper.toBlogSearchResponse(k, paging));
+            .map(k -> BlogSearchResponseMapper.toBlogSearchResponse(k, constrainedPaging));
     }
 
     /**
