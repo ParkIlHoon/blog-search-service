@@ -58,6 +58,8 @@ class KakaoBlogSearchClientTest {
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(KakaoApiConstants.AUTH_HEADER, KakaoApiConstants.AUTH_HEADER_VALUE_PREFIX)
             .build());
+        // 테스트 코드에서 dispatcher 에 적재한 응답 본문을 제거하기위한 코드. 해당 코드가 없으면 실패한 테스트에서 적재한 데이터가 응답되지 않아 점점 하나씩 밀리게됨.
+        mockWebServer.getDispatcher().peek();
     }
 
     @Test
