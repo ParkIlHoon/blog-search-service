@@ -1,0 +1,8 @@
+
+application:
+  search-source:
+    kakao:
+      api-key: give_me_key
+    naver:
+      client-id: give_me_clientId
+      client-secret: give_me_clientSecret
