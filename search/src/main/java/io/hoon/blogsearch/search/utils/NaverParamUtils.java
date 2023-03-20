@@ -1,6 +1,5 @@
 package io.hoon.blogsearch.search.utils;
 
-import io.hoon.blogsearch.search.contants.NaverApiContants;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -15,19 +14,22 @@ public class NaverParamUtils {
      * @return 검색 시작 위치
      */
     public static int calculateStart(int page, int pageSize) {
+        if (page == 1) return 1;
         return (page - 1) * pageSize + 1;
     }
 
     /**
      * 검색 시작 위치와 페이지 사이즈를 통해 페이지를 계산합니다.
      *
-     * @param start    검색 시작 위치
+     * @param start   검색 시작 위치
      * @param display 한 번에 표시할 검색 결과 개수
      * @return 페이지
      */
     public static int calculatePage(int start, int display) {
-        int left = start + 1;
-        return (int) Math.round((double) left / display) + 1;
+        return (start / display) + ((start % display > 0) ? 1 : 0);
+    }
+    public static long calculatePage(long start, long display) {
+        return (start / display) + ((start % display > 0) ? 1 : 0);
     }
 
     /**
@@ -39,8 +41,8 @@ public class NaverParamUtils {
      * @return 마지막 페이지 여부
      */
     public static boolean calculateEnd(int start, int display, long total) {
-        int checksum = start + display - 1;
-        return checksum >= total
-            || checksum >= NaverApiContants.CONSTRAINT_START_MAX * NaverApiContants.CONSTRAINT_DISPLAY_MAX;
+        long lastPage = calculatePage(total, display);
+        long currentPage = calculatePage(start, display);
+        return lastPage == currentPage;
     }
 }

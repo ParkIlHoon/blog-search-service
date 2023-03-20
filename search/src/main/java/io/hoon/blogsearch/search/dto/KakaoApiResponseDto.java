@@ -4,11 +4,13 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * <h1>카카오 블로그 검색 API 응답 DTO</h1>
  */
 @Getter
+@ToString
 @RequiredArgsConstructor
 public class KakaoApiResponseDto {
 
@@ -23,6 +25,7 @@ public class KakaoApiResponseDto {
     }
 
     @Getter
+    @ToString
     @RequiredArgsConstructor
     public static class Meta {
 
@@ -51,6 +54,7 @@ public class KakaoApiResponseDto {
     }
 
     @Getter
+    @ToString
     @RequiredArgsConstructor
     public static class Document {
 

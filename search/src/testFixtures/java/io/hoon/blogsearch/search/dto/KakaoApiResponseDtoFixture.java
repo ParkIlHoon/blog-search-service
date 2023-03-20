@@ -31,6 +31,7 @@ public class KakaoApiResponseDtoFixture {
     }
 
     public static KakaoApiResponseDto getEnd(int pageSize) {
+        RANDOM.setSeed(System.currentTimeMillis());
         int count = RANDOM.nextInt(pageSize);
         Meta meta = new Meta(10000L, pageSize, true);
         KakaoApiResponseDto result = new KakaoApiResponseDto(meta, new ArrayList<>());

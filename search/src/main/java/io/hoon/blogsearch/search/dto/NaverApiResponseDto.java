@@ -3,11 +3,13 @@ package io.hoon.blogsearch.search.dto;
 import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * <h1>네이버 블로그 검색 API 응답 DTO</h1>
  */
 @Getter
+@ToString
 @RequiredArgsConstructor
 public class NaverApiResponseDto {
 
@@ -26,9 +28,18 @@ public class NaverApiResponseDto {
     /**
      * <h3>개별 검색 결과</h3>
      */
-    private final List<Item> item;
+    private final List<Item> items;
+
+    // JSON 직렬화/역직렬화를 위한 생성자
+    private NaverApiResponseDto() {
+        this.total = -1;
+        this.start = -1;
+        this.display = -1;
+        this.items = null;
+    }
 
     @Getter
+    @ToString
     @RequiredArgsConstructor
     public static class Item {
         /**
@@ -57,5 +68,15 @@ public class NaverApiResponseDto {
          * <h3>블로그 포스트가 작성된 날짜</h3>
          */
         private final String postdate;
+
+        // JSON 직렬화/역직렬화를 위한 생성자
+        public Item() {
+            this.title = null;
+            this.link = null;
+            this.description = null;
+            this.bloggername = null;
+            this.bloggerlink = null;
+            this.postdate = null;
+        }
     }
 }

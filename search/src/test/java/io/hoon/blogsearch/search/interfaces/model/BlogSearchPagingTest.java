@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,11 @@ class BlogSearchPagingTest {
     class of {
 
         private final Random random = new Random();
+
+        @BeforeEach
+        void setUp() {
+            random.setSeed(System.currentTimeMillis());
+        }
 
         @Test
         @DisplayName("성공 : page 인자")

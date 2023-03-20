@@ -7,6 +7,9 @@ import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse;
 import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse.Content;
 import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse.Header;
 import io.hoon.blogsearch.search.utils.NaverParamUtils;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -19,6 +22,8 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BlogSearchResponseMapper {
+
+    private static final DateTimeFormatter NAVER_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     /**
      * 카카오 API 응답 DTO 를 BlogSearchResponse 로 매핑합니다.
@@ -66,13 +71,13 @@ public class BlogSearchResponseMapper {
             .end(NaverParamUtils.calculateEnd(dto.getStart(), dto.getDisplay(), dto.getTotal()))
             .build();
 
-        List<Content> contents = dto.getItem()
+        List<Content> contents = dto.getItems()
             .stream()
             .map(i -> Content.builder()
                 .postTitle(i.getTitle())
                 .postContents(i.getDescription())
                 .postUrl(i.getLink())
-                .postDate(ZonedDateTime.parse(i.getPostdate(), DateTimeFormatter.ISO_DATE))
+                .postDate(ZonedDateTime.of(LocalDate.parse(i.getPostdate(), NAVER_DATE_FORMATTER), LocalTime.MIN, ZoneId.of("Asia/Seoul")))
                 .blogTitle(i.getBloggername())
                 .build())
             .toList();
