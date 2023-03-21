@@ -1,5 +1,6 @@
 package io.hoon.blogsearch.api.configuration;
 
+import io.hoon.blogsearch.api.chain.BlogSearchChain;
 import io.hoon.blogsearch.api.properties.SearchSourceProperties;
 import io.hoon.blogsearch.search.interfaces.client.KakaoBlogSearchClient;
 import io.hoon.blogsearch.search.interfaces.client.NaverBlogSearchClient;
@@ -33,4 +34,13 @@ public class BlogSearchSourceConfig {
         return new NaverBlogSearchClient(searchSourceProperties.getNaver().getClientId(), searchSourceProperties.getNaver().getClientSecret());
     }
 
+    /**
+     * 블로그 검색 체인
+     */
+    @Bean
+    public BlogSearchChain blogSearchChain() {
+        BlogSearchChain searchChain = new BlogSearchChain(kakaoBlogSearchClient());
+        searchChain.next(naverBlogSearchClient());
+        return searchChain;
+    }
 }
