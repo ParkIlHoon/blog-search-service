@@ -15,15 +15,13 @@ import reactor.core.publisher.Mono;
  * <h1>블로그 검색 컨트롤러</h1>
  */
 @RestController
+@RequestMapping("/api/v1/search")
 @RequiredArgsConstructor
 public class SearchController {
-
-    public static final String PATH = "/api/v1/search";
-
     private final BlogSearchManager blogSearchManager;
     private final BlogSearchEventPublisher blogSearchEventPublisher;
 
-    @GetMapping(PATH)
+    @GetMapping
     public Mono<BlogSearchResponse> search(@RequestParam String keyword,
                                            @RequestParam int page,
                                            @RequestParam(required = false, defaultValue = "10") int pageSize,
