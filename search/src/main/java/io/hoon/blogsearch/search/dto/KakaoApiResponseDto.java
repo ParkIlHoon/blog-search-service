@@ -1,5 +1,6 @@
 package io.hoon.blogsearch.search.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.Getter;
@@ -32,17 +33,20 @@ public class KakaoApiResponseDto {
         /**
          * <h3>검색된 문서 수</h3>
          */
+        @JsonProperty("total_count")
         private final long totalCount;
 
         /**
          * <h3>total_count 중 노출 가능 문서 수</h3>
          */
+        @JsonProperty("pageable_count")
         private final long pageableCount;
 
         /**
          * <h3>현재 페이지가 마지막 페이지인지 여부</h3>
          * 값이 false면 page를 증가시켜 다음 페이지를 요청할 수 있음
          */
+        @JsonProperty("is_end")
         private final boolean end;
 
         // JSON 직렬화/역직렬화를 위한 생성자

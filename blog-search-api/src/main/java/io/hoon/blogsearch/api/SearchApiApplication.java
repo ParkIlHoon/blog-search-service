@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"io.hoon.blogsearch"})
 @ConfigurationPropertiesScan(basePackages = "io.hoon.blogsearch.api.properties")
 public class SearchApiApplication {
 

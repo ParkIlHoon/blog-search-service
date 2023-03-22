@@ -33,7 +33,7 @@ public class BlogSearchResponseMapper {
      */
     public static BlogSearchResponse toBlogSearchResponse(KakaoApiResponseDto dto, BlogSearchPaging paging) {
         Header header = Header.builder()
-            .totalCount(dto.getMeta().getPageableCount())
+            .totalCount(dto.getMeta().getTotalCount())
             .page(paging.getPage())
             .pageSize(paging.getPageSize())
             .end(dto.getMeta().isEnd())
