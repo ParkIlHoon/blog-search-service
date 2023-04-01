@@ -1,4 +1,4 @@
-package io.hoon.blogsearch.keyword.entity;
+package io.hoon.blogsearch.keyword.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;

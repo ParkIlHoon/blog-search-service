@@ -1,6 +1,6 @@
-package io.hoon.blogsearch.keyword.repository;
+package io.hoon.blogsearch.keyword.domain.repository;
 
-import io.hoon.blogsearch.keyword.entity.KeywordHistory;
+import io.hoon.blogsearch.keyword.domain.entity.KeywordHistory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

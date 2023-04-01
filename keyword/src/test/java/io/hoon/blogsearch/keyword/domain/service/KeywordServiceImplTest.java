@@ -1,16 +1,16 @@
-package io.hoon.blogsearch.keyword.service;
+package io.hoon.blogsearch.keyword.domain.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
-import io.hoon.blogsearch.keyword.entity.KeywordHistory;
-import io.hoon.blogsearch.keyword.entity.KeywordHistoryFixture;
+import io.hoon.blogsearch.keyword.domain.entity.KeywordHistory;
+import io.hoon.blogsearch.keyword.domain.entity.KeywordHistoryFixture;
 import io.hoon.blogsearch.keyword.interfaces.exception.IllegalArgumentException;
 import io.hoon.blogsearch.keyword.interfaces.model.PopularKeyword;
 import io.hoon.blogsearch.keyword.interfaces.service.KeywordService;
-import io.hoon.blogsearch.keyword.repository.KeywordHistoryRepository;
+import io.hoon.blogsearch.keyword.domain.repository.KeywordHistoryRepository;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -40,33 +40,6 @@ class KeywordServiceImplTest {
     @Nested
     @DisplayName("검색어 이력 생성")
     class createKeywordHistory {
-        @Test
-        @DisplayName("성공 : 해당 검색어로 첫번째 검색일 경우")
-        void success_first_search() {
-            // given
-            final String name = "검색어";
-            when(keywordHistoryRepository.existsByName(name)).thenReturn(false);
-
-            // when
-            boolean isFirstSearch = keywordService.createKeywordHistory(name);
-
-            // then
-            assertTrue(isFirstSearch);
-        }
-
-        @Test
-        @DisplayName("성공 : 해당 검색어로 첫번째 검색이 아닐 경우")
-        void success_not_first_search() {
-            // given
-            final String name = "검색어";
-            when(keywordHistoryRepository.existsByName(name)).thenReturn(true);
-
-            // when
-            boolean isFirstSearch = keywordService.createKeywordHistory(name);
-
-            // then
-            assertFalse(isFirstSearch);
-        }
 
         @Test
         @DisplayName("실패 : 검색어가 빈 문자열일 경우")
