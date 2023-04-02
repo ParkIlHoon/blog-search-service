@@ -22,23 +22,24 @@ public class DistributeLockAspect {
     private final DistributeLocker distributeLocker;
 
     @Around("@annotation(distributeLockAnnotation)")
-    public void lock(ProceedingJoinPoint joinPoint, DistributeLock distributeLockAnnotation) throws Throwable {
+    public Object lock(ProceedingJoinPoint joinPoint, DistributeLock distributeLockAnnotation) throws Throwable {
         if (Objects.isNull(distributeLocker)) {
-            joinPoint.proceed();
-            return;
+            return joinPoint.proceed();
         }
 
         // lock
         String joinPointName = joinPoint.getSignature().getName();
         distributeLocker.lock(joinPointName);
 
+        Object result = null;
         try {
             // proceeding
-            joinPoint.proceed();
+            result = joinPoint.proceed();
         } finally {
             // unlock
             distributeLocker.unlock();
         }
+        return result;
     }
 
 }

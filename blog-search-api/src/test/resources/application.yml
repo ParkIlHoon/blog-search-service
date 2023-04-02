@@ -29,3 +29,8 @@ spring:
     redis:
       host: localhost
       port: 16379
+
+logging:
+  level:
+    # 통합 테스트 로그 레벨 조정
+    io.hoon.blogsearch.api.integration: debug
