@@ -1,5 +1,6 @@
 rootProject.name = 'blog-search-service'
 
+include 'support-locker'
 include 'keyword'
 include 'search'
 include 'blog-search-api'

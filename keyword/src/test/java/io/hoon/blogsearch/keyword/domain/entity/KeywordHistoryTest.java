@@ -1,7 +1,8 @@
-package io.hoon.blogsearch.keyword.entity;
+package io.hoon.blogsearch.keyword.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import io.hoon.blogsearch.keyword.domain.entity.KeywordHistory;
 import io.hoon.blogsearch.keyword.interfaces.exception.IllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

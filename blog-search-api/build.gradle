@@ -14,4 +14,6 @@ dependencies {
 
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation 'it.ozimov:embedded-redis:0.7.2'
 }

@@ -31,7 +31,7 @@ class BlogSearchPagingTest {
         @DisplayName("성공 : page 인자")
         void success_only_page() {
             // given
-            final int page = random.nextInt(50);
+            final int page = random.nextInt(49 + 1);
 
             // when
             BlogSearchPaging paging = BlogSearchPaging.of(page);
@@ -44,7 +44,7 @@ class BlogSearchPagingTest {
         @DisplayName("성공 : page, sort 인자")
         void success_page_sort() {
             // given
-            final int page = random.nextInt(50);
+            final int page = random.nextInt(49) + 1;
             final Sort sort = getRandom();
 
             // when
@@ -59,8 +59,8 @@ class BlogSearchPagingTest {
         @DisplayName("성공 : page, pageSize, sort 인자")
         void success_page_sort_size() {
             // given
-            final int page = random.nextInt(50);
-            final int pageSize = random.nextInt(50);
+            final int page = random.nextInt(49) + 1;
+            final int pageSize = random.nextInt(49) + 1;
             final Sort sort = getRandom();
 
             // when
@@ -96,7 +96,7 @@ class BlogSearchPagingTest {
         @DisplayName("실패 : sort is null")
         void fail_sort_null() {
             // given
-            final int page = random.nextInt(50);
+            final int page = random.nextInt(49) + 1;
             final Sort sort = null;
 
             // when, then
@@ -107,7 +107,7 @@ class BlogSearchPagingTest {
         @DisplayName("실패 : pageSize 최소값 미만")
         void fail_less_than_pagesize_min() {
             // given
-            final int page = random.nextInt(50);
+            final int page = random.nextInt(49) + 1;
             final int pageSize = 0;
             final Sort sort = getRandom();
 
@@ -119,7 +119,7 @@ class BlogSearchPagingTest {
         @DisplayName("실패 : pageSize 최대값 미만")
         void fail_more_than_pagesize_min() {
             // given
-            final int page = random.nextInt(50);
+            final int page = random.nextInt(49) + 1;
             final int pageSize = 51;
             final Sort sort = getRandom();
 
