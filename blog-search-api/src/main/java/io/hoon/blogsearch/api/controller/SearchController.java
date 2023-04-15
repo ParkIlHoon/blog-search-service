@@ -1,6 +1,6 @@
 package io.hoon.blogsearch.api.controller;
 
-import io.hoon.blogsearch.api.event.publisher.BlogSearchEventPublisher;
+import io.hoon.blogsearch.api.event.annotation.PublishBlogSearchEvent;
 import io.hoon.blogsearch.api.manager.BlogSearchManager;
 import io.hoon.blogsearch.keyword.interfaces.model.PopularKeyword;
 import io.hoon.blogsearch.keyword.interfaces.service.KeywordService;
@@ -22,15 +22,14 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class SearchController {
     private final BlogSearchManager blogSearchManager;
-    private final BlogSearchEventPublisher blogSearchEventPublisher;
     private final KeywordService keywordService;
 
     @GetMapping("/search")
+    @PublishBlogSearchEvent
     public Mono<BlogSearchResponse> search(@RequestParam String keyword,
                                            @RequestParam int page,
                                            @RequestParam(required = false, defaultValue = "10") int pageSize,
                                            @RequestParam(required = false, defaultValue = "ACCURACY") Sort sort) {
-        blogSearchEventPublisher.publishBlogSearchEvent(keyword);
         return blogSearchManager.search(keyword, page, pageSize, sort);
     }
 
