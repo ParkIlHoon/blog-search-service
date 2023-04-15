@@ -2,10 +2,10 @@
 application:
   search-source:
     kakao:
-      api-key: give_me_key
+      api-key: 15843d10189a9fe004ad1ecf630e9419
     naver:
-      client-id: give_me_clientId
-      client-secret: give_me_clientSecret
+      client-id: iRM5R__ifv_0jBqHfHjl
+      client-secret: VjZxi9o2FS
   event-bus:
     name: guava-event-bus
     thread-count: 5
