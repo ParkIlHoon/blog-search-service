@@ -1,7 +1,10 @@
+# 설계
+* [설계 내용](document/Design.md)
+
 # 결과물
 [blog-search.api.jar](blog-search-api.jar)
 
-# 실행 방법
+## 실행 방법
 ```shell
 java -jar blog-search-api.jar \
 -Dapplication.search-source.kakao.api-key={Kakao API KEY} \

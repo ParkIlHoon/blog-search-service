@@ -44,16 +44,16 @@ subprojects {
     }
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         compileOnly 'org.projectlombok:lombok'
+        implementation 'org.springframework.boot:spring-boot-starter'
         annotationProcessor 'org.projectlombok:lombok'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
         testCompileOnly 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testAnnotationProcessor 'org.projectlombok:lombok'
 
-        testFixturesImplementation 'org.springframework.boot:spring-boot-starter-test'
         testFixturesCompileOnly 'org.projectlombok:lombok'
+        testFixturesImplementation 'org.springframework.boot:spring-boot-starter-test'
         testFixturesAnnotationProcessor 'org.projectlombok:lombok'
     }
 
@@ -63,16 +63,16 @@ subprojects {
 
 }
 
-project(':keyword') {
+project(':blog-search-domain-keyword') {
     dependencies {
-        implementation project(':support-locker')
+        implementation project(':blog-search-support-distribute-locker')
     }
 }
 
-project(':blog-search-api') {
+project(':blog-search-app-api') {
     dependencies {
-        implementation project(':support-locker')
-        implementation project(':keyword')
-        implementation project(':search')
+        implementation project(':blog-search-support-distribute-locker')
+        implementation project(':blog-search-support-search-client')
+        implementation project(':blog-search-domain-keyword')
     }
 }
