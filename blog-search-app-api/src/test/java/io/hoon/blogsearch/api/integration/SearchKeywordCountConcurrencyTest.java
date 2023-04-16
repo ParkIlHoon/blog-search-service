@@ -4,9 +4,9 @@ package io.hoon.blogsearch.api.integration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import io.hoon.blogsearch.keyword.domain.repository.KeywordHistoryRepository;
-import io.hoon.blogsearch.keyword.interfaces.model.PopularKeyword;
-import io.hoon.blogsearch.keyword.interfaces.service.KeywordService;
+import io.hoon.blogsearch.domain.keyword.domain.repository.KeywordHistoryRepository;
+import io.hoon.blogsearch.domain.keyword.interfaces.model.PopularKeyword;
+import io.hoon.blogsearch.domain.keyword.interfaces.service.KeywordService;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;

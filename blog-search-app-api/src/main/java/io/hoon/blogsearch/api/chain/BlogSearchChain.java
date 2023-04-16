@@ -1,8 +1,8 @@
 package io.hoon.blogsearch.api.chain;
 
-import io.hoon.blogsearch.search.interfaces.client.BlogSearchClient;
-import io.hoon.blogsearch.search.interfaces.model.BlogSearchPaging;
-import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse;
+import io.hoon.blogsearch.support.searchclient.interfaces.client.BlogSearchClient;
+import io.hoon.blogsearch.support.searchclient.interfaces.model.BlogSearchPaging;
+import io.hoon.blogsearch.support.searchclient.interfaces.model.BlogSearchResponse;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;

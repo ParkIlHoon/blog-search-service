@@ -3,7 +3,7 @@ package io.hoon.blogsearch.api.event.listener;
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.Subscribe;
 import io.hoon.blogsearch.api.event.BlogSearchEvent;
-import io.hoon.blogsearch.keyword.interfaces.service.KeywordService;
+import io.hoon.blogsearch.domain.keyword.interfaces.service.KeywordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

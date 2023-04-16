@@ -2,10 +2,10 @@ package io.hoon.blogsearch.api.controller;
 
 import io.hoon.blogsearch.api.event.annotation.PublishBlogSearchEvent;
 import io.hoon.blogsearch.api.manager.BlogSearchManager;
-import io.hoon.blogsearch.keyword.interfaces.model.PopularKeyword;
-import io.hoon.blogsearch.keyword.interfaces.service.KeywordService;
-import io.hoon.blogsearch.search.interfaces.enums.Sort;
-import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse;
+import io.hoon.blogsearch.domain.keyword.interfaces.model.PopularKeyword;
+import io.hoon.blogsearch.domain.keyword.interfaces.service.KeywordService;
+import io.hoon.blogsearch.support.searchclient.interfaces.enums.Sort;
+import io.hoon.blogsearch.support.searchclient.interfaces.model.BlogSearchResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

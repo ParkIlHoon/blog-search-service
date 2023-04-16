@@ -1,9 +1,9 @@
 package io.hoon.blogsearch.api.manager;
 
 import io.hoon.blogsearch.api.chain.BlogSearchChain;
-import io.hoon.blogsearch.search.interfaces.enums.Sort;
-import io.hoon.blogsearch.search.interfaces.model.BlogSearchPaging;
-import io.hoon.blogsearch.search.interfaces.model.BlogSearchResponse;
+import io.hoon.blogsearch.support.searchclient.interfaces.enums.Sort;
+import io.hoon.blogsearch.support.searchclient.interfaces.model.BlogSearchPaging;
+import io.hoon.blogsearch.support.searchclient.interfaces.model.BlogSearchResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;

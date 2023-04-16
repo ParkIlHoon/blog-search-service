@@ -2,9 +2,9 @@ package io.hoon.blogsearch.api.configuration;
 
 import io.hoon.blogsearch.api.chain.BlogSearchChain;
 import io.hoon.blogsearch.api.properties.SearchSourceProperties;
-import io.hoon.blogsearch.search.interfaces.client.KakaoBlogSearchClient;
-import io.hoon.blogsearch.search.interfaces.client.NaverBlogSearchClient;
-import io.hoon.blogsearch.search.interfaces.client.BlogSearchClient;
+import io.hoon.blogsearch.support.searchclient.interfaces.client.KakaoBlogSearchClient;
+import io.hoon.blogsearch.support.searchclient.interfaces.client.NaverBlogSearchClient;
+import io.hoon.blogsearch.support.searchclient.interfaces.client.BlogSearchClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
