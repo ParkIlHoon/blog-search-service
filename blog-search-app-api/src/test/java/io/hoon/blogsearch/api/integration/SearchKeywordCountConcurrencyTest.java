@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -23,9 +24,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 @Slf4j
 @SpringBootTest
+@Testcontainers
 @AutoConfigureMockMvc
 @DisplayName("검색어 카운트 동시성 통합 테스트")
 class SearchKeywordCountConcurrencyTest {
@@ -39,6 +44,18 @@ class SearchKeywordCountConcurrencyTest {
     @Autowired
     MockMvc mockMvc;
 
+    @BeforeAll
+    static void beforeAll() {
+        GenericContainer<?> REDIS_CONTAINER =
+            new GenericContainer<>(DockerImageName.parse("bitnami/redis:latest"))
+                .withEnv("ALLOW_EMPTY_PASSWORD", "yes")
+                .withExposedPorts(6379);
+
+        REDIS_CONTAINER.start();
+
+        System.setProperty("spring.data.redis.host", REDIS_CONTAINER.getHost());
+        System.setProperty("spring.data.redis.port", REDIS_CONTAINER.getMappedPort(6379).toString());
+    }
 
     @BeforeEach
     void setUp() {

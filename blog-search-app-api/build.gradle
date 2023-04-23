@@ -16,5 +16,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-    testImplementation 'it.ozimov:embedded-redis:0.7.2'
+    // Test Container for Redis Environment
+    testImplementation "org.testcontainers:testcontainers:1.18.0"
+    testImplementation "org.testcontainers:junit-jupiter:1.18.0"
 }
