@@ -1,0 +1,31 @@
+
+application:
+  search-source:
+    kakao:
+      api-key: give_me_key
+    naver:
+      client-id: give_me_clientId
+      client-secret: give_me_clientSecret
+  event-bus:
+    name: guava-event-bus
+    thread-count: 5
+  distribute-lock:
+    enabled: true
+    redisson:
+      enabled: true
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+  data:
+    redis:
+      host: localhost
+      port: 6379
