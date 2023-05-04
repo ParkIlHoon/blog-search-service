@@ -78,6 +78,13 @@ class SearchKeywordCountConcurrencyTest {
             threads.forEach(Thread::start);
             countDownLatch.await();
 
+            //STUDY 이러면 성공으로 만들 수 있지만... 테스트 환경에 따라서 몇 초를 대기할지가 다를 수도 있고... 멋이 안남...
+            //      ByteBuddy를 통해 BCI를 하거나 AspectJ로 콜백을 추가할 수 있지 않을까...? => 빌드 후에 테스트코드가 돌테니 아니겠지... ㅡㅡ; Spring AOP로 런타임에서 잡아야할듯
+            //      ReflectionUtil.doWithMethods 도 해봤는데 한 번만 돌던데 ㅡㅡ
+            //      근데 그러면 Presentation 레이어 모듈의 테스트에서 하위 모듈의 구현을 알아야한다는 문제가 발생함...
+            //      그렇다고 테스트 코드 때문에 콜백을 받도록 기능을 수정할 수도 없고...
+            Thread.sleep(5000);
+
             // then
             List<PopularKeyword> popularKeywords = keywordService.getPopularKeywords(10);
             assertEquals(1, popularKeywords.size());
@@ -104,6 +111,8 @@ class SearchKeywordCountConcurrencyTest {
             // when
             threads.forEach(executorService::execute);
             countDownLatch.await();
+
+            Thread.sleep(5000);
 
             // then
             List<PopularKeyword> popularKeywords = keywordService.getPopularKeywords(10);
@@ -150,6 +159,8 @@ class SearchKeywordCountConcurrencyTest {
             // when
             threads.forEach(Thread::start);
             countDownLatch.await();
+
+            Thread.sleep(5000);
 
             // then
             List<PopularKeyword> popularKeywords = keywordService.getPopularKeywords(10);
