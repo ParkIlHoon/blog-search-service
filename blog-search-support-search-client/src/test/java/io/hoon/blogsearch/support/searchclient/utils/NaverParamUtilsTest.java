@@ -2,8 +2,8 @@ package io.hoon.blogsearch.support.searchclient.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import io.hoon.blogsearch.support.searchclient.utils.NaverParamUtils;
-import java.util.Random;
+import org.jeasy.random.EasyRandom;
+import org.jeasy.random.EasyRandomParameters;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
@@ -20,8 +20,10 @@ class NaverParamUtilsTest {
         @DisplayName("성공")
         void success() {
             // given
-            final int page = new Random().nextInt(10000);
-            final int pageSize = new Random().nextInt(10000);
+            final EasyRandom easyRandom = new EasyRandom(new EasyRandomParameters().seed(System.currentTimeMillis()));
+            final int page = easyRandom.nextInt(1, 10000);
+            final int pageSize = easyRandom.nextInt(1, 10000);
+            System.out.println(page + " , " + pageSize);
 
             // when
             int start = NaverParamUtils.calculateStart(page, pageSize);

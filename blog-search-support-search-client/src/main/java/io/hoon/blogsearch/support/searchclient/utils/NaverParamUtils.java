@@ -1,5 +1,6 @@
 package io.hoon.blogsearch.support.searchclient.utils;
 
+import io.hoon.blogsearch.support.searchclient.interfaces.exception.IllegalArgumentException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,10 @@ public class NaverParamUtils {
      * @param pageSize 페이지 사이즈
      * @return 검색 시작 위치
      */
-    public static int calculateStart(int page, int pageSize) {
+    public static int calculateStart(int page, int pageSize) throws IllegalArgumentException {
+        if (page < 1 || pageSize < 1) {
+            throw new IllegalArgumentException("페이지와 페이지 사이즈는 1 이상이어야합니다.");
+        }
         if (page == 1) return 1;
         return (page - 1) * pageSize + 1;
     }
